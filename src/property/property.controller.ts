@@ -9,9 +9,10 @@ export class PropertyController {
         return "All properties"
     }
 
-    @Get(":id")
-    findOne(@Param("id") userId: string) {
-        return `this is number ${userId}`
+    @Get(":id/:town")
+    findOne(@Param() userId) {
+        //since we did not put anything in the parametoer of @params it will take it as object that contain all params
+        return `this is number ${userId.id} and ${userId.town}`
     }
 
     @Post()
