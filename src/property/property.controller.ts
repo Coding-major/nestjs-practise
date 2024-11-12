@@ -10,8 +10,8 @@ export class PropertyController {
     }
 
     @Get(":id")
-    findOne(@Param("id") id: string) {
-        return `this is number ${id}`
+    findOne(@Param("id") userId: string) {
+        return `this is number ${userId}`
     }
 
     @Post()
