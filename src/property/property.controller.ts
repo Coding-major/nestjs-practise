@@ -16,7 +16,8 @@ export class PropertyController {
 
     @Post()
 
-    create(@Body() body) {
-        return `The body is ${body}`
+    create(@Body() body, @Body("skul") skul) {
+        const me = body.name
+        return `${body.skul}     ${skul}   ${me}`
     }
 }
