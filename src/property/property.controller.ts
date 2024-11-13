@@ -20,8 +20,12 @@ export class PropertyController {
 
     @Post()
     @HttpCode(201)
-    @UsePipes(new ValidationPipe({whitelist: true, forbidNonWhitelisted: true})) //whitelist is used to remove unvalidated input from the body
-    create(@Body() body: CreatePropertyDto, @Body("skul") skul) {
+    //@UsePipes(new ValidationPipe({whitelist: true, forbidNonWhitelisted: true})) //whitelist is used to remove unvalidated input from the body
+    create(
+        @Body(new ValidationPipe({whitelist: true, forbidNonWhitelisted: true})) 
+        body: CreatePropertyDto,
+        @Body("skul") skul
+    ) {
         const me = body.name
         console.log(typeof body.area);
         console.log(body);
