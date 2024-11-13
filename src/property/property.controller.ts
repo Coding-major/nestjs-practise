@@ -1,4 +1,5 @@
-import { Body, Controller, Get, HttpCode, Param, ParseBoolPipe, ParseIntPipe, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Param, ParseBoolPipe, ParseIntPipe, Post, Query, UsePipes, ValidationPipe } from '@nestjs/common';
+import { CreatePropertyDto } from './dto/createProperty.dto';
 
 @Controller('property')
 export class PropertyController {
@@ -19,8 +20,13 @@ export class PropertyController {
 
     @Post()
     @HttpCode(201)
-    create(@Body() body, @Body("skul") skul) {
+    @UsePipes(new ValidationPipe({whitelist: true, forbidNonWhitelisted: true})) //whitelist is used to remove unvalidated input from the body
+    create(@Body() body: CreatePropertyDto, @Body("skul") skul) {
         const me = body.name
+        console.log(typeof body.area);
+        console.log(body);
+        
+        
         return `${body.skul}     ${skul}   ${me}`
     }
 }
