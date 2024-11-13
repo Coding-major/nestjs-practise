@@ -4,9 +4,9 @@ export class CreatePropertyDto {
     @IsString()
     @Length(4, 8, {groups: ["createw"]})
     name:string;
-    @IsString({always: true})
+    @IsString()
     skul:string;
-    @IsInt({always: true})
+    @IsInt()
     @IsPositive()
     area:number;
 }
