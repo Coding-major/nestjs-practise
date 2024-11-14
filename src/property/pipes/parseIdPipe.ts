@@ -12,7 +12,7 @@ export class ParseIdPipe implements PipeTransform<string, number>{
 
         if  (isNaN(val)) throw new BadRequestException("id must be a number")
         if (val <= 0)
-            throw new BadRequestException("id must be positive")
+            throw new BadRequestException("id must be positivedd")
 
         return val;
     }

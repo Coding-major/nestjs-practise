@@ -2,6 +2,8 @@ import { Body, Controller, Get, HttpCode, Param, ParseBoolPipe, ParseIntPipe, Pa
 import { CreatePropertyDto } from './dto/createProperty.dto';
 import { idParamsDto } from './dto/idParams.dto';
 import { ParseIdPipe } from './pipes/parseIdPipe';
+import { ZodValidationPipe } from './pipes/zodValidationPipe';
+import { createPropertySchema, CreatePropertyZodDto } from './dto/createPropertyZod.dto';
 
 @Controller('property')
 export class PropertyController {
@@ -21,17 +23,17 @@ export class PropertyController {
     }
 
     @Post()
-    @HttpCode(201)
+    // @HttpCode(201)
+    @UsePipes(new ZodValidationPipe(createPropertySchema))
     create(
-        @Body() body: CreatePropertyDto,
-        @Body("skul") skul
+        @Body() body: CreatePropertyZodDto,
     ) {
         const me = body.name
         console.log(typeof body.area);
         console.log(body);
         
         
-        return `${body.skul}     ${skul}   ${me}`
+        return `${body.skul}      ${me}`
     }
 
     @Patch(":id")
